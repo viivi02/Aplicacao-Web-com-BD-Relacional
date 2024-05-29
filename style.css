@@ -1,0 +1,144 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#app {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.personagem {
+    background-color: #a6c1e5;
+    border: 2px solid #1a355e;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 200px;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.acoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+button {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #73295c;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: background-color 0.5s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #3d0525;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(0px);
+}
+
+.barra-vida {
+    height: 32px;
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 16px;
+}
+
+.sprite {
+    height: 160px;
+    background-color: #3f3f3f;
+}
+
+.sprite, .heroift{
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#app, .historico {
+    display: flex;
+    align-items: center;
+}
+li {
+    background-color: #caeccb;
+    margin: 8px 16px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #afeeb2;
+}
+
+li span.nome {
+    font-weight: bold;
+    color: #333333;
+}
+
+li span.idade {
+    font-style: italic;
+    color: #555555;
+}
+
+.detalhes {
+    margin-top: 8px;
+    padding: 16px;
+    background-color: rgba(144, 192, 144, 0.52);
+    border-radius: 8px;
+    border: 1px solid #4CAF50;
+    max-height: 250px;
+    overflow: auto;
+}
+
+li.expanded {
+    background-color: #d3d3d3;
+}
+
+li.expanded .detalhes {
+    display: block;
+}
+
+.vitoria, .gameover {
+    position: absolute;
+    align-items: center;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; 
+}
+.vitoria, .gameover, .reiniciar{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.reiniciar{
+    padding: 2%;
+    margin-top: 20px;
+}
+

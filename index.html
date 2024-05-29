@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova - Herói e Vilão</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="historico">
+        <button onclick="window.open('dashboard.html','_blank')">Dashboard</button>
+        <ul>
+            <li v-for="hero in heros" :key="hero.id" @click="expandirItem(hero)">
+                <span class="nome"> {{ hero.nome }} </span>
+                <div v-show="hero.expanded" class="detalhes">
+                    <ul>
+                        <li v-for="mensage in hero.historico">
+                            {{ mensage }}
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="jogo">
+    <div class="personagem" style="width: 200px;">
+        <div class="barra-vida" :style="{width: heroi.vida + '%', backgroundColor: heroi.vida > 70 ? '#4CAF50': heroi.vida > 30 ? 'yellow' : 'red'}">{{ heroi.vida }}</div>
+        <div class="sprite"><img class="heroift" src="img/heroi.png"></div>
+        <h1>Cavalheiro</h1>
+        <div class="acoes">
+            <button @click="atacar(heroi, vilao)">Atacar</button>
+            <button @click="defender(heroi, vilao)">Defender</button>
+            <button @click="usarPocao(heroi, vilao)">Usar Poção</button>
+            <button @click="correr(heroi, vilao)">Correr</button>
+        </div>
+    </div>
+    <div class="personagem" >
+        <div class="barra-vida" :style="{width: vilao.vida + '%', backgroundColor: vilao.vida > 70 ? '#4CAF50': vilao.vida > 30 ? 'yellow' : 'red'}">{{ vilao.vida }}</div>
+        <div class="sprite"><img class="vilaoft" src="img/dragao.png"></div>
+        <h1>Dragão</h1>
+    </div>
+    <div v-if="vilao.vida <= 0" class="vitoria">
+        <img src="img/vitoria.gif" alt="Vitória" style="border-radius: 5px; height: 50%;">
+        <button class="reiniciar" @click="reiniciarGame">Reiniciar Game</button>
+    </div>
+    <div v-if="heroi.vida <= 0" class="gameover">
+        <img src="img/gameover.gif" alt="derrota" style="border-radius: 5px; height: 60%;">
+        <button class="reiniciar" @click="reiniciarGame">Reiniciar Game</button>
+    </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="index.js"></script>
