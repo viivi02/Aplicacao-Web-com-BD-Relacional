@@ -119,15 +119,21 @@ app.post('/signup', async (req, res) => {
 
 
 // Rota para servir o arquivo HTML principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/game', (req, res) => {
+    res.sendFile(path.join(__dirname, 'jogo.html'));
 });
 
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'dashboard.html'));
 });
 
+app.get('/', (req, res) => {
+    console.log('Rota / acessada');
+    res.sendFile(path.join(__dirname, 'login.html'));
+});
+
 app.get('/login', (req, res) => {
+    console.log('Rota /login acessada');
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 

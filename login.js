@@ -37,7 +37,7 @@ const Login = {
 
                 const data = await response.json();
                 if (response.ok) {
-                    window.location.href = '/index.html'; // Redirecionar para o dashboard após login bem-sucedido
+                    window.location.href = '/jogo.html'; // Redirecionar para o dashboard após login bem-sucedido
                 } else {
                     alert(data.error);
                 }

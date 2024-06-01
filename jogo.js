@@ -23,6 +23,24 @@ createApp({
         expandirItem(item){
             item.expanded = !item.expanded
         },
+        async atualizarVidaServidor() {
+            try {
+                const response = await fetch('/atualizarVida', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        vidaHeroi: this.heroi.vida,
+                        vidaVilao: this.vilao.vida
+                    })
+                });
+                const data = await response.json();
+                console.log(data); 
+            } catch (error) {
+                console.error('Erro ao atualizar a vida no servidor:', error);
+            }
+        },
         turnoh(){
             this.turno = true;
         },
@@ -43,11 +61,13 @@ createApp({
             }else{
                 if(atacante == this.heroi){
                     atacado.vida -= 10;
+                    this.atualizarVidaServidor();
                     mensagem = "Herói atacou.";
                     this.registrohistorico(this.heros[0],mensagem);
                     this.turnov();
                 }else{
                     atacado.vida -= 20;
+                    this.atualizarVidaServidor();
                     mensagem = "Vilão atacou.";
                     this.registrohistorico(this.heros[1],mensagem);
                 }
@@ -71,6 +91,7 @@ createApp({
                 mensagem = "Herói usou poção de cura!";
                 this.registrohistorico(this.heros[0],mensagem);
                 perso.vida += 10;
+                this.atualizarVidaServidor();
                 if (perso.vida >= 100){
                     perso.vida = 100;
                 }
@@ -79,6 +100,7 @@ createApp({
                 mensagem = "Vilão usou poção de cura!";
                 this.registrohistorico(this.heros[1],mensagem);
                 perso.vida += 10;
+                this.atualizarVidaServidor();
                 if (perso.vida >= 100){
                     perso.vida = 100;
                 }
@@ -119,7 +141,12 @@ createApp({
             personagem.historico.push(mensagem);    
         },
         reiniciarGame() {
-            window.location.reload();
+            window.location.reload(); 
         }
+    },
+    mounted() {
+        window.addEventListener('beforeunload', async () => {
+            await this.atualizarVidaServidor();
+        });
     }
 }).mount("#app")
