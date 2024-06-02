@@ -25,7 +25,7 @@ createApp({
         },
         async atualizarVidaServidor() {
             try {
-                const response = await fetch('/atualizarVida', {
+                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/api/atualizarVida', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

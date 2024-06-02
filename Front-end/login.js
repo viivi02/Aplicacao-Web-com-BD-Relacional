@@ -27,17 +27,17 @@ const Login = {
         async login() {
             console.log('Tentando fazer login com:', this.usuario, this.senha); // Log de depuração
             try {
-                const response = await fetch('/logar', {
+                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/api/logar', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ username: this.usuario, password: this.senha }) // Certifique-se de que os nomes dos campos correspondem aos esperados no servidor
                 });
-
+        
                 const data = await response.json();
                 if (response.ok) {
-                    window.location.href = '/jogo.html'; // Redirecionar para o dashboard após login bem-sucedido
+                    window.location.href = 'https://aplicacao-web-com-bd-relacional.onrender.com/jogo.html'; // Redirecionar para o dashboard após login bem-sucedido
                 } else {
                     alert(data.error);
                 }
