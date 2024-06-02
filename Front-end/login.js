@@ -27,7 +27,7 @@ const Login = {
         async login() {
             console.log('Tentando fazer login com:', this.usuario, this.senha); // Log de depuração
             try {
-                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/api/logar', {
+                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/logar', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

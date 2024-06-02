@@ -25,14 +25,17 @@ createApp({
         },
         async atualizarVidaServidor() {
             try {
-                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/api/atualizarVida', {
+                const vidaHeroiInt = parseInt(this.heroi.vida);
+                const vidaVilaoInt = parseInt(this.vilao.vida);
+        
+                const response = await fetch('https://aplicacao-web-com-bd-relacional.onrender.com/atualizarVida', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        vidaHeroi: this.heroi.vida,
-                        vidaVilao: this.vilao.vida
+                        vidaHeroi: vidaHeroiInt,
+                        vidaVilao: vidaVilaoInt
                     })
                 });
                 const data = await response.json();
